@@ -2,7 +2,7 @@
 .newspaper {
   background-color: antiquewhite;
   font-family: Times New Roman, Times, serif;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .magazine1 {
@@ -52,4 +52,9 @@
 
 .skewright {
   transform: skewX(-10deg);
+}
+
+/* ______________GERAL_______________ */
+span {
+  margin: 10px;
 }
