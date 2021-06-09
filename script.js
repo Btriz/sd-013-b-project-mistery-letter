@@ -5,34 +5,25 @@ function random(min, max) {
 
 function classeEstilo() {
   const estilo = random(1, 3);
-  switch(estilo) {
-    case 1:
-      return('newspaper');
-    case 2:
-      return('magazine1');
-    case 3:
-      return('magazine2');
+  switch (estilo) {
+  case 1:
+    return ('newspaper');
+  case 2:
+    return ('magazine1');
+  default:
+    return ('magazine2');
   }
 }
 
 function classeTamanho() {
   const tamanho = random(1, 3);
-  switch(tamanho) {
-    case 1:
-      return('medium');
-    case 2:
-      return('big');
-    case 3:
-      return('reallybig');
-  }
-}
-
-function terceiraClasse() {
-  const classe = random(1, 2);
-  if (classe === 1) {
-    return(classeRotacao());
-  } else {
-    return(classeInclinacao());
+  switch (tamanho) {
+  case 1:
+    return ('medium');
+  case 2:
+    return ('big');
+  default:
+    return ('reallybig');
   }
 }
 
@@ -40,29 +31,34 @@ function classeRotacao() {
   const rotacao = random(1, 2);
   if (rotacao === 1) {
     return ('rotateleft');
-  } else {
-    return ('rotateright');
-  }
+  } return ('rotateright');
 }
 
 function classeInclinacao() {
   const rotacao = random(1, 2);
   if (rotacao === 1) {
-    return('skewleft');
-  } else {
-    return('skewright');
-  }
+    return ('skewleft');
+  } return ('skewright');
 }
 
-function estilo(event) {
-  let classe = '';
-  event.target.className = '';
-  classe = classeEstilo();
-  event.target.classList.add(classe);
-  classe = classeTamanho();
-  event.target.classList.add(classe);
-  classe = terceiraClasse();
-  event.target.classList.add(classe);
+function terceiraClasse() {
+  const classe = random(1, 2);
+  if (classe === 1) {
+    return (classeRotacao());
+  } return (classeInclinacao());
+}
+
+let classe1;
+let classe2;
+let classe3;
+
+function mudarClasses(event) {
+  const palavra = event.target;
+  classe1 = classeEstilo();
+  classe2 = classeTamanho();
+  classe3 = terceiraClasse();
+  palavra.className = '';
+  palavra.classList.add(classe1, classe2, classe3);
 }
 
 // _____________________CRIAR CARTA_______________________
@@ -78,15 +74,12 @@ function criarCarta(texto) {
       palavraAtual += texto[index];
     } else {
       const palavra = document.createElement('span');
-      let classe;
       palavra.innerText = palavraAtual;
-      classe = classeEstilo();
-      palavra.classList.add(classe);
-      classe = classeTamanho();
-      palavra.classList.add(classe);
-      classe = terceiraClasse();
-      palavra.classList.add(classe);
-      palavra.addEventListener('click', estilo);
+      classe1 = classeEstilo();
+      classe2 = classeTamanho();
+      classe3 = terceiraClasse();
+      palavra.classList.add(classe1, classe2, classe3);
+      palavra.addEventListener('click', mudarClasses);
       paragrafo.appendChild(palavra);
       palavraAtual = '';
       numero += 1;
